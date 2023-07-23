@@ -50,9 +50,10 @@ In Falle von Röntgenstrahlung ist der Brechungsindex
 \end{equation}
 wobei $\beta$ und $\delta$ die materialspezifische Absorptionkonstante und Dispersion (Größenordnung $10^{-6}$) sind.
 Ab einem kritischen Winkel $\alpha\idx{C}$ tritt Totalreflexion auf. Diese ist 
-\begin{equation*}
+\begin{equation}
   \alpha\idx{C} \approx \sqrt{2 \delta} = \lambda \sqrt{\frac{\rho r\idx{e}}{\pi}}
-\end{equation*}
+  \label{eq:kritisch}
+\end{equation}
 unter der Annahme von kleinen Winkeln. Hier ist $\lambda$ die Wellenlänge, $\rho$ die Elektronendichte des Stoffes und 
 $r\idx{e}$ der Elektronenradius.
 Um das Amplitudenverhältnis des reflektierten und transmittierten Anteil des Lichts, wenn es auf eine Grenzfläche zwischen zwei 
@@ -101,6 +102,7 @@ an der Grenzfläche zum zweiten Medium reflektiert wird. Dieser reflektierte Ant
 bereits am ersten Medium reflektiert wurde. Über die Gleichung 
 \begin{equation}
 d = \frac{\lambda}{2\upDelta \alpha\idx{i}}
+\label{eq:schicht}
 \end{equation}
 kann die Schichtdicke berechnet werden. Dabei ist $\upDelta \alpha\idx{i}$ der Abstand zwischen zwei Minima/Maxima.
 Bestehen Systeme aus mehr als zwei Schichten, überlagern sich die Oszillationen. Um diese Überlagerung zu quantifizieren, wird der 

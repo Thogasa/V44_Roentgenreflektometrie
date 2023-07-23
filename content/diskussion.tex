@@ -1,3 +1,43 @@
-
 \section{Diskussion}
-
+Beim detektor-scan wurde die Parameter 
+\input{build/paramsdecScan.tex}
+ermittelt. Wiederrum beim Z-scan wurde eine Strahlenbreite von 
+\input{build/ergzScan.tex} 
+bestimmt. Da es für diese Werte keine Theoriewerte, zum vergleich gibt kann keine Aussage über die Güte der Messung getroffen werden.
+Bei dem Rocking-scan wurde ein Geometriewinkel von $\alpha{G} = 2.26\,°$ ermittelt. Verglichen mit dem Theoriewert $\alpha\idx{G, Theorie} = 1.777$
+hat dieser Wert eine abweichung von ca $27.2\,\%$. Da diese Werte keine Unsicherheiten haben, ist eine eindeutige Aussage nicht möglich,
+die hoche relative Abweichung deutet allerdings auf eine Fehlerhafte Justage.\\
+Die messdaten der Reflektionmessung betohnt die bisherige Vermutung, da das erwartete Plateau, klein und undeutig ist. Vergleicht man 
+die Ergebnisse der Schichtdicke, vom Reflektionscan und der Parrattkurve, 
+\begin{equation}
+\begin{aligned}
+    d\idx{0} &= (959.70 \pm 0.71)\,\si{\angstrom} \\
+    d\idx{0} &= 813.9\,\si{\angstrom} \\
+\end{aligned}
+\end{equation}
+ist offensichtilich, dass diese nicht mit einander Übereinstimmen. Die Abweichung beträgt $(17.91 \pm0.09)\,\%$. Dies ließe sich mit dem 
+hohen Raschen in den Oszillationen erklären. Dadurch, dass die Unsicherheit nur aus der Abweichung der Differenzen bestimmt wurde,
+ist diese eindeutig eine Unterschätzung des realen Fehlers.
+Die Parameter der Parrattkurve welche mit Literaturwerten \cite{V44} vergleichbar sind, sind die $\delta$ werte. Diese sowie die 
+korrespondierenden Literaturwerte sind:
+\begin{equation}
+    \begin{aligned}
+        \delta\idx{2, Parratt} &= 7.6\cdot 10^{6} \\
+        \delta\idx{3, Parratt} &= 8.077\cdot 10^{6} \\
+        \delta\idx{2, Theorie} &= 5\cdot 10^{6} \\
+        \delta\idx{3, Theorie} &= 7.6\cdot 10^{6}. \\
+    \end{aligned}
+\end{equation}
+Die Abweichungen hier sind $r\idx{2} = 52\,\%$ und $r\idx{3} = 6\,\%$. Hier ist aufzufallen, dass der Wert für $\delta\idx{3}$ eine geringe
+und $\delta\idx{2}$ eine vergleichsweise hohe Abweichung hat. Aufgrund der händischen Annäherung an die Messwerte, fehlen jedoch die 
+Ungenauigkeiten, was einen echten Vergleich unmöglich macht. Dennoch die große Abweichung von $\delta\idx{2}$ spricht erneut für eine 
+Fehlerhafte Justage. Die Ergebnisse des Parrattalgorithmus, welche nicht mit Literaturwerten vergleichbar sind, sind 
+\begin{equation}
+    \begin{aligned}
+        \sigma\idx{1} &= 2.688\cdot 10^{9} \\
+        \sigma\idx{2} &= 4.829\cdot 10^{10} \\
+        b\idx{1} &= 3.863\cdot 10^{7} \\
+        b\idx{2} &= 1.483\cdot 10^{5} \\
+        d\idx{2} &=  813.9\,\si{\angstrom}.
+    \end{aligned}
+\end{equation}
