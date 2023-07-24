@@ -33,7 +33,7 @@ Vor dem eigentlichen Beginn der Reflektivitätsmessung muss die Apparatur durch 
 um sicherzustellen, dass alles richtig ausgerichtet ist.
 Es ist wichtig, dass vor der Justierung die Strahlintensität durch einen Autoabsorber reduziert wird, um 
 eine Beschädigung des Detektors zu vermeiden.
-In Tabelle \ref{tab:justage} sind die Messbereiche und weitere Angaben zu den einzelnen Justage-Scans als Orientierung aufgeführt.
+In Tabelle \ref{tab:Justierung} sind die Messbereiche und weitere Angaben zu den einzelnen Justage-Scans als Orientierung aufgeführt.
 Zuerst wird die Probe erstmal aus dem Strahl entfernt, indem die Z-Koordinate geändert wird. Zudem werden die 
 Röhre und der Detektor auf 0\,° justiert.
 Es wird nun mit einem Detektorscan begonnen, um sicherzugehen, dass der reflektierte Röntgenstrahl zentriert auf den Detektor trifft.
@@ -42,14 +42,14 @@ Danach wird ein Z-Scan durchgeführt, um die Z-Koordinate so anzupassen, dass di
 Die X-Koordinate wird ähnlich mit einem X-Scan bestimmt, der die Form eines Plateaus mit abgesenkter Intensität besitzt. 
 Die Probe ist dann richtig positioniert, wenn die Probe entlang der X-Koordinate 
 im Bereich des Strahls liegt. Dabei muss wieder die Hälfte des Eingangsstrahls verdeckt sein.
-Sind die X- und Z-Koordinaten justiert und beträgt die Intensität $\frac{1}{1} I\idx{max}$, so wird ein Rocking-Scan durchgeführt.
+Sind die X- und Z-Koordinaten justiert und beträgt die Intensität $\frac{1}{2} I\idx{max}$, so wird ein Rocking-Scan durchgeführt.
 Des Weiteren soll der Strahl parallel zur Probenoberfläche ausgerichtet werden, deswegen wird ein Rockingscan durchgeführt.
 Damit kann eine präzise Justierung der Y-Koordinate garantiert werden und liefert Informationen über die Verkippung der Probe 
 zum Strahl. Bei einem Rockingscan rotieren die Röhre und der Detektor um die Probe, wobei 
 \begin{equation*}
   \alpha\idx{i} + \alpha\idx{f}= 2\theta
 \end{equation*}
-gilt. Der Y-Scan hat die Form eines symmetrischen Dreiecks. Im Idealfall ist die Nullposition der Peak des Dreiecks.
+gilt. $\alpha\idx{i}$ ist der Einfallswinkel auf die Probe und $\alpha\idx{f}$ der Winkel zwischen Probe und Detektor. Der Y-Scan hat die Form eines symmetrischen Dreiecks. Im Idealfall ist die Nullposition der Peak des Dreiecks.
 Sollte das Dreieck nicht symmetrisch sein, muss die Y-Koordinate nochmal nachjustiert werden, so dass die Probe sich im Drehpunkt 
 des Diffraktometers befindet. Da der Rockingscan die Position der Probe verändert, 
 ist es notwendig, diese anschließend durch einen zweiten Z-Scan wieder in die Mitte des Strahls zu bringen.
@@ -58,23 +58,16 @@ Darauffolgend ermöglicht ein dritter Z-Scan unter den selben Winkel eine genaue
 da sie direkt aus dem Maximum der Intensitätskurve abgelesen werden kann.
 Die Justierung wird mit einem erneuten Rockingscan unter einem höheren Winkel $2\theta=0,5\,°$ beendet.
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[scale=0.35]{table.JPG}
-  \caption{Orientierungswerte für die Justierung \cite{V44}.}
-  \label{tab:justage}
-\end{figure}
+\input{Table_justierung.tex}
+%\begin{figure}[H]
+%  \centering
+%  \includegraphics[scale=0.35]{table.JPG}
+%  \caption{Orientierungswerte für die Justierung \cite{V44}.}
+%  \label{tab:justage}
+%\end{figure}
 
-
-
-
-
-
-
-
-
-
-
+ 
+\newpage
 \subsection{Messung}
 Alle erfassten Messdaten werden erst im .raw-Format gespeichert und anschließend 
 mithilfe des Programms \textit{File Exchange} in .uxd-Dateien konvertiert, um sie auswerten zu können.
