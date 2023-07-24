@@ -13,7 +13,10 @@ def gauss(x,a,mu,sig):
     return a*np.exp(-((x-mu)/sig)**2)
 
 def sigFig(x):
-    return -int(np.floor(np.log10(np.abs(x)))) +1
+    return -int(np.floor(np.log10(np.abs(x))))
+
+def ceil(x,n):
+    return np.ceil(x*(10**n))/10**n
 
 def generateplot(x,y,func,  xlabel:string, ylabel:string, name: string, islog: bool, paramNames, units):
     plt.rcParams['figure.figsize'] = (10, 8)
@@ -51,13 +54,13 @@ def generateplot(x,y,func,  xlabel:string, ylabel:string, name: string, islog: b
     FWHM = 2*np.sqrt(np.log(2)*2)*sig
     print(params)
 
-
     f = open("build/params" + name + ".tex","w")
     f.write(r"\begin{equation*}" + "\n")
     f.write(r"\begin{aligned}" + "\n")
     for p, i in zip(paramNames, range(len(paramNames))):
-        f.write(fr"{p} &= (" + str(np.round(params[i], sigFig(uncertainties[i]))) + r"\pm" + str(np.round(uncertainties[i], sigFig(uncertainties[i])))+ r")\," + f"{units[i]}" + r"\\" + "\n")
-    f.write(fr"FWHM &= (" + str(np.round(FWHM.nominal_value, sigFig(FWHM.std_dev))) + r"\pm" + str(np.round(FWHM.std_dev, sigFig(FWHM.std_dev)))+ r")\," + r"\si{\degree}" + r"\\" + "\n")
+        print(f"test : {uncertainties[i], sigFig(uncertainties[i])}")
+        f.write(fr"{p} &= (" + str(np.round(params[i], sigFig(uncertainties[i]))) + r"\pm" + str(ceil(uncertainties[i], sigFig(uncertainties[i])))+ r")\," + f"{units[i]}" + r"\\" + "\n")
+    f.write(fr"FWHM &= (" + str(np.round(FWHM.nominal_value, sigFig(FWHM.std_dev))) + r"\pm" + str(ceil(FWHM.std_dev, sigFig(FWHM.std_dev)))+ r")\," + r"\si{\degree}" + r"\\" + "\n")
     f.write(r"\end{aligned}" + "\n")
     f.write(r"\end{equation*}" + "\n")
     f.close()
@@ -102,4 +105,4 @@ print(np.max(y))
 
 data = np.array([[data[i][0], int(data[i][1]), data[i+len(data)//2][0], int(data[i+len(data)//2][1])] for i in range(len(data)//2)])
 generatetable(data, 'decScan', 'Messdaten zum Detectorscan','decScan', [r'$\alpha/°$', 'counts',r'$\alpha/°$', 'counts'])
-generateplot(x, y, gauss, r'$\alpha in °$', 'counts', 'decScan', False, ['I\idx{max}', r'\mu', r'\sigma'], ['\cdot 10^{5}', '°', '\cdot 10^{-3}°'])
+generateplot(x, y, gauss, r'$\alpha$ in °', 'counts', 'decScan', False, ['I\idx{max}', r'\mu', r'\sigma'], ['\cdot 10^{5}', '°', '\cdot 10^{-3}°'])

@@ -13,7 +13,7 @@ def gauss(x,a,mu,sig):
     return a*np.exp(-((x-mu)/sig)**2)
 
 def sigFig(x):
-    return -int(np.floor(np.log10(np.abs(x)))) +1
+    return -int(np.floor(np.log10(np.abs(x))))
 
 def generateplot(x,y,  xlabel:string, ylabel:string, name: string, islog: bool,):
     plt.rcParams['figure.figsize'] = (10, 8)

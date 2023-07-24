@@ -10,7 +10,10 @@ import uncertainties as un
 from uncertainties.unumpy import (nominal_values as noms, std_devs as stds)
 
 def sigFig(x):
-    return -int(np.floor(np.log10(np.abs(x)))) +1
+    return -int(np.floor(np.log10(np.abs(x)))) 
+
+def ceil(x,n):
+    return np.ceil(x*(10**n))/10**n
 
 def generateplot(x,y,  xlabel:string, ylabel:string, name: string, islog: bool,):
     plt.rcParams['figure.figsize'] = (10, 8)
@@ -25,6 +28,18 @@ def generateplot(x,y,  xlabel:string, ylabel:string, name: string, islog: bool,)
             yCor.append(yi/G)
         else:
             yCor.append(yi)
+    print(np.where(x == 0.225)[0])
+    normFak = yCor[np.where(x == 0.225)[0][0]]
+    yCor = [i/normFak for i in yCor]
+
+    y = []
+    for xi,yi in zip(x,yCor):
+        if(xi < 1.777):
+            G =np.sin(np.deg2rad(xi))*20/0.62
+            y.append(yi*G)
+        else:
+            y.append(yi)
+    
     
     minIdxs = [64,73,83,91,102,110]
     plt.plot(x[minIdxs[0]], yCor[minIdxs[0]], 'o', color='b', label='Minima')
@@ -37,10 +52,13 @@ def generateplot(x,y,  xlabel:string, ylabel:string, name: string, islog: bool,)
     plt.plot(x,y, color = "b",label ="Diffus korrigierte Messdaten")        
     plt.axvline(0.22, color = 'r', linestyle = 'dashdot', label = r'$\alpha_c$')
 
+
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     if(islog):
         plt.yscale('log')
+    plt.yticks([1e2, 1e0, 1e-2, 1e-4, 1e-6])
+    
     plt.legend(loc='best')
     plt.grid(True)
     plt.savefig("build/plot" + name + ".pdf")
@@ -67,8 +85,8 @@ def generateplot(x,y,  xlabel:string, ylabel:string, name: string, islog: bool,)
     f = open("build/erg" + name + ".tex","w")
     f.write(r"\begin{equation*}" + "\n")
     f.write(r"\begin{aligned}" + "\n")
-    f.write(r"\Delta\alpha\idx{ave} &=" + "({:.6f}".format(np.round(aveDel.nominal_value, sigFig(aveDel.std_dev))) + r" \pm " + "{:.6f}".format(np.round(aveDel.std_dev, sigFig(aveDel.std_dev))) + r")\,{\si{\degree}}" + r"\\" + "\n")
-    f.write(r"\d &=" + f"({np.round(d.nominal_value, sigFig(d.std_dev))}" + r" \pm " + f"{np.round(d.std_dev, sigFig(d.std_dev))}" + r")\cdot 10^{-10}\,{\si{\meter}}." + r"\\" + "\n")
+    f.write(r"\Delta\alpha\idx{ave} &=" + "({:.5f}".format(np.round(aveDel.nominal_value, sigFig(aveDel.std_dev))) + r" \pm " + "{:.5f}".format(ceil(aveDel.std_dev, sigFig(aveDel.std_dev))) + r")\,{\si{\degree}}" + r"\\" + "\n")
+    f.write(r"\d &=" + f"({np.round(d.nominal_value, sigFig(d.std_dev))}" + r" \pm " + f"{ceil(d.std_dev, sigFig(d.std_dev))}" + r")\cdot 10^{-10}\,{\si{\meter}}." + r"\\" + "\n")
     f.write(r"\end{aligned}" + "\n")
     f.write(r"\end{equation*}" + "\n")
     f.close()
@@ -111,7 +129,10 @@ data1 = np.loadtxt("build/Scan_7_Oszillation_bei_0,1.txt")
 
 data = np.array([[d[0], d[1]-d1[1]] for d, d1 in zip(data, data1)])
 
-data = np.array([[d[0],d[1]*5/(9.7e5)] for d in data])
+normFak = data[np.where(data[:,0] == 0.225)[0],1][0]
+print(normFak)
+
+# data = np.array([[d[0],d[1]/normFak] for d in data])
 
 x = data[:,0]
 y = data[:,1]
